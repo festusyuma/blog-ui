@@ -1,7 +1,7 @@
 <template>
   <div class='add-post-form'>
     <form>
-      <textarea class='add-post-input' placeholder='Add new post'></textarea>
+      <textarea class='add-post-input' placeholder='Add new post' maxlength='500'></textarea>
       <div class='d-flex'>
         <button class='btn btn-primary ms-auto' type='submit'>POST</button>
       </div>
