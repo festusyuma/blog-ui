@@ -27,6 +27,7 @@ export default {
 
   methods: {
     async fetchPosts() {
+      this.$showAlert('Started', 'success')
       try {
         const res = await this.$axios.get('post')
         window.console.log(res)
