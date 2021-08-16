@@ -1,0 +1,22 @@
+@import "~bootstrap/scss/bootstrap";
+@import "variables";
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  color: $primary;
+  font-family: 'Roboto Slab', serif;
+  letter-spacing: 1px;
+}
+
+body {
+  background: $backgroundPrimary;
+  min-height: 100vh;
+}
+
+.btn {
+  padding: 0.5rem 2rem;
+  box-shadow: $box-shadow;
+  font-weight: 500;
+}
