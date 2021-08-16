@@ -41,12 +41,50 @@ export default {
   modules: [
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
+    '@nuxtjs/auth-next',
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
-  axios: {},
+  axios: {
+    baseUrl: 'https://api.blog.festusyuma.com/'
+  },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
-  }
+  },
+
+  auth: {
+    strategies: {
+      local: {
+        token: {
+          property: 'data.token',
+          type: 'Bearer',
+        },
+        user: {
+          property: 'data',
+        },
+        endpoints: {
+          login: {
+            url: 'auth/login',
+            method: 'post',
+          },
+          logout: false,
+          user: {
+            url: 'auth/verify',
+            method: 'get',
+          },
+        },
+      },
+    },
+    redirect: {
+      login: '/login',
+      logout: null,
+      home: '/',
+      callback: null,
+    },
+  },
+
+  router: {
+    middleware: ['auth'],
+  },
 }
