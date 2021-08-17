@@ -44,8 +44,7 @@ export default {
               }
             }
           }
-        }
-        window.console.log(e.message)
+        } else window.console.log(e.message)
         await this.$store.dispatch('toggleLoading', false)
       }
     }

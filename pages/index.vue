@@ -2,7 +2,7 @@
   <div class='posts-page'>
     <AddPost @savedPost='fetchPosts' />
     <div class='posts'>
-      <Post v-for='post in posts' :key='post.id' :post='post' />
+      <Post v-for='post in posts' :key='post.id' :post='post' @likedPost='fetchPosts' />
     </div>
   </div>
 </template>

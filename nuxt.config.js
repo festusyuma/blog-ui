@@ -16,6 +16,9 @@ export default {
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+    ],
+    script: [
+      { src: 'https://kit.fontawesome.com/4d2e1c6675.js', crossorigin: 'anonymous' }
     ]
   },
 
@@ -102,8 +105,8 @@ export default {
 
   fontawesome: {
     icons: {
-      solid: ['faTimes', 'faMinus'],
-      regular: ['faUser'],
+      solid: ['faTimes', 'faMinus', 'faHeart'],
+      regular: ['faUser', 'faHeart'],
     },
     component: 'Fa',
     suffix: true,
