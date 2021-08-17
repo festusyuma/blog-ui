@@ -107,6 +107,11 @@ export default {
       i {
         margin-right: 0.25rem;
       }
+
+      span {
+        color: $primary;
+        font-size: 0.85rem;
+      }
     }
 
     .detail:hover {

@@ -15,7 +15,7 @@
             <a class="nav-link" href="#">{{ $auth.user.name }}</a>
           </li>
           <li class="nav-item">
-            <button class="btn btn-inverse" type="submit">logout</button>
+            <button class="btn btn-inverse" type="submit" @click='logout'>logout</button>
           </li>
         </ul>
         <ul v-else class="navbar-nav mb-2 mb-lg-0">
@@ -55,6 +55,7 @@ export default {
     async logout() {
       try {
         await this.$auth.logout()
+        await this.$router.push('/login')
       } catch (e) {
         window.console.log(e)
       }

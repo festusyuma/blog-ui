@@ -4,9 +4,10 @@
       <div class='mb-5'>
         <input v-model='user.email' class='form-control' type='text' placeholder='Email' />
       </div>
-      <div class='mb-5'>
+      <div class='mb-3'>
         <input v-model='user.password' class='form-control' type='password' placeholder='password' />
       </div>
+      <p class='my-2'>Don't have an account? <nuxt-link to='/register'>Register here</nuxt-link></p>
       <button type='submit' class='btn'>Login</button>
     </form>
   </div>
@@ -18,8 +19,8 @@ export default {
   data () {
     return {
       user: {
-        email: 'festusyuma@gmail.com',
-        password: 'fidelias'
+        email: '',
+        password: ''
       }
     }
   },
