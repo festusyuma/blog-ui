@@ -34,6 +34,7 @@ export default {
       await this.$store.dispatch('toggleLoading', true)
       if (this.comment.trim() === '') {
         this.$showAlert('Comment cannot be empty', 'error')
+        await this.$store.dispatch('toggleLoading', false)
         return
       }
 

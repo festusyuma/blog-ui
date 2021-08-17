@@ -10,10 +10,10 @@
         <i v-else class="far fa-heart"></i>
         {{ post.totalLikes }} like<span v-if='post.totalLikes > 1'>s</span>
       </div>
-      <div class='detail'>
+      <nuxt-link :to='`/twit/${post.id}`' class='detail'>
         <i class="far fa-comment"></i>
         {{ post.totalComments }} comment<span v-if='post.totalComments > 1'>s</span>
-      </div>
+      </nuxt-link>
       <div class='detail ms-auto name'>By {{ post.User.name }}</div>
     </div>
   </div>

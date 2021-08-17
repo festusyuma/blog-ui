@@ -28,6 +28,7 @@ export default {
       await this.$store.dispatch('toggleLoading', true)
       if (this.post.trim() === '') {
         this.$showAlert('Post cannot be empty', 'error')
+        await this.$store.dispatch('toggleLoading', false)
         return
       }
 
