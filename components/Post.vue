@@ -1,5 +1,8 @@
 <template>
   <div v-if='post' class='twit'>
+    <div v-if='post.User.id === $auth.user.id' class='d-flex detail' @click='deletePost'>
+      <i class="fas fa-trash ms-auto text-danger mb-2"></i>
+    </div>
     <p class='content' @click='goToTwit'>{{ post.post }}</p>
     <div class='details d-flex'>
       <div class='detail' @click='likePost'>
@@ -34,7 +37,8 @@ export default {
       await this.$store.dispatch('toggleLoading', true)
 
       try {
-        await this.$axios.get(`post/${this.post.id}/like`)
+        const res = await this.$axios.get(`post/${this.post.id}/like`)
+        this.$showAlert(res.data.message, 'success')
         this.$emit('likedPost')
       } catch (e) {
         const response = e.response
@@ -53,7 +57,29 @@ export default {
       }
     },
 
+    async deletePost() {
+      await this.$store.dispatch('toggleLoading', true)
 
+      try {
+        const res = await this.$axios.delete(`post/${this.post.id}`)
+        this.$showAlert(res.data.message, 'success')
+        this.$emit('deletedPost')
+      } catch (e) {
+        const response = e.response
+        if (response) {
+          if (response.status === 500) this.$showAlert('An error occurred', 'error')
+          if (response.data) {
+            this.$showAlert(response.data.message, 'error')
+            if (response.status === 401) {
+              if (this.$auth.loginWith) {
+                await this.$auth.logout()
+              }
+            }
+          }
+        } else window.console.log(e.message)
+        await this.$store.dispatch('toggleLoading', false)
+      }
+    },
   },
 }
 </script>
@@ -86,6 +112,10 @@ export default {
     .detail:hover {
       cursor: pointer;
     }
+  }
+
+  .detail:hover {
+    cursor: pointer;
   }
 }
 
