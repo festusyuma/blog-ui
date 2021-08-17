@@ -31,6 +31,10 @@ export default {
       ssr: false,
     },
     {
+      src: '~/plugins/axios.js',
+      ssr: false,
+    },
+    {
       src: '~/plugins/show-alert',
       ssr: false,
     },
@@ -94,5 +98,14 @@ export default {
 
   router: {
     middleware: ['auth'],
+  },
+
+  fontawesome: {
+    icons: {
+      solid: ['faTimes', 'faMinus'],
+      regular: ['faUser'],
+    },
+    component: 'Fa',
+    suffix: true,
   },
 }

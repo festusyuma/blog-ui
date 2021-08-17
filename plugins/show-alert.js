@@ -6,5 +6,6 @@ export default ({ app }, inject) => {
       duration: 5000,
     })
   }
+
   inject('showAlert', showAlert)
 }

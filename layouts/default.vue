@@ -10,13 +10,21 @@
         <form class="d-flex mx-auto">
           <input class="form-control search-input" type="search" placeholder="Search" aria-label="Search">
         </form>
-        <ul class="navbar-nav mb-2 mb-lg-0">
+        <ul v-if='$auth.loggedIn' class="navbar-nav mb-2 mb-lg-0">
           <li class="nav-item">
             <a class="nav-link" href="#">{{ $auth.user.name }}</a>
           </li>
           <li class="nav-item">
             <button class="btn btn-inverse" type="submit">logout</button>
           </li>
+        </ul>
+        <ul v-else class="navbar-nav mb-2 mb-lg-0">
+          <nuxt-link to="/login" class="nav-item">
+            <button class="btn btn-inverse me-4" type="submit">Login</button>
+          </nuxt-link>
+          <nuxt-link to="/register" class="nav-item">
+            <button class="btn btn-inverse" type="submit">Register</button>
+          </nuxt-link>
         </ul>
       </div>
     </div>
