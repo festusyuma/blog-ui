@@ -1,7 +1,7 @@
 <template>
   <div v-if='comment' class='comment'>
-    <div v-if='comment.User.id === $auth.user.id' class='d-flex detail' @click='deleteComment'>
-      <i class="fas fa-trash ms-auto text-danger mb-2"></i>
+    <div v-if='comment.User.id === $auth.user.id' class='d-flex detail'>
+      <i class="fas fa-trash ms-auto text-danger mb-2" @click='deleteComment'></i>
     </div>
     <p class='content'>{{ comment.comment }}</p>
     <div class='details d-flex'>

@@ -83,7 +83,10 @@ export default {
             url: 'auth/login',
             method: 'post',
           },
-          logout: false,
+          logout: {
+            url: 'auth/logout',
+            method: 'get',
+          },
           user: {
             url: 'auth/verify',
             method: 'get',

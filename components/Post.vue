@@ -1,7 +1,7 @@
 <template>
   <div v-if='post' class='twit'>
-    <div v-if='post.User.id === $auth.user.id' class='d-flex detail' @click='deletePost'>
-      <i class="fas fa-trash ms-auto text-danger mb-2"></i>
+    <div v-if='post.User.id === $auth.user.id' class='d-flex detail'>
+      <i class="fas fa-trash ms-auto text-danger mb-2" @click='deletePost'></i>
     </div>
     <p class='content' @click='goToTwit'>{{ post.post }}</p>
     <div class='details d-flex'>
@@ -126,5 +126,6 @@ export default {
 
 .twit:hover .content {
   cursor: pointer;
+  color: #131334;
 }
 </style>
