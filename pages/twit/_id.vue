@@ -2,8 +2,8 @@
   <div v-if='post' class='twit-page'>
     <Post :post='post' @likedPost='fetchPost' @deletedPost='deletedPost' />
     <AddComment :post-id='post.id' @savedComment='fetchPost' />
-    <div class='comments'>
-      <p v-for='comment in post.Comments' :key='comment.id'>{{ comment.comment }}</p>
+    <div class='comments mt-2'>
+      <Comment v-for='comment in post.Comments' :key='comment.id' :comment='comment' @deletedComment='fetchPost' />
     </div>
   </div>
 </template>
