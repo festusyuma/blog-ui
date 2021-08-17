@@ -8,7 +8,7 @@
         maxlength='500'>
       </textarea>
       <div class='d-flex'>
-        <button class='btn btn-primary ms-auto' type='submit'>POST</button>
+        <button class='btn ms-auto' type='submit'>Post</button>
       </div>
     </form>
   </div>
@@ -24,7 +24,23 @@ export default {
   },
 
   methods: {
-    async addPost() {}
+    async addPost() {
+      await this.$store.dispatch('toggleLoading', true)
+      if (this.post.trim() === '') {
+        this.$showAlert('Post cannot be empty', 'error')
+        return
+      }
+
+      try {
+        await this.$axios.$post('post', { post: this.post })
+        this.$showAlert('Successfully added post', 'success')
+        this.$emit('savedPost')
+        this.post = ''
+      } catch (e) {
+        window.console.log(e)
+        await this.$store.dispatch('toggleLoading', false)
+      }
+    }
   }
 }
 </script>
@@ -45,6 +61,7 @@ export default {
     border-bottom: 0.5px solid $primary;
     resize: none;
     min-height: 5rem;
+    margin-bottom: 0.5rem;
   }
 }
 </style>

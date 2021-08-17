@@ -16,10 +16,6 @@ export default {
     }
   },
 
-  async fetch () {
-    await this.login()
-  },
-
   methods: {
     async login() {
       const res = await this.$auth.login({ data: this.user })
