@@ -1,43 +1,54 @@
 <template>
-  <div class='twit-page'>
-
+  <div v-if='post' class='twit-page'>
+    <Post :post='post' @likedPost='fetchPost' @deletedPost='deletedPost' />
+    <AddComment :post-id='post.id' @savedComment='fetchPost' />
+    <div class='comments'>
+      <p v-for='comment in post.Comments' :key='comment.id'>{{ comment.comment }}</p>
+    </div>
   </div>
 </template>
 
 <script>
 export default {
   name: 'Id',
+  data() {
+    return {
+      post: null,
+    }
+  },
+
+  async fetch() {
+    await this.fetchPost()
+  },
+
   methods: {
-    async likePost() {
+    async fetchPost() {
+      const postId = this.$route.params.id
       await this.$store.dispatch('toggleLoading', true)
 
       try {
-        await this.$axios.get(`post/${this.post.id}/like`)
-        this.$emit('likedPost')
+        const res = await this.$axios.$get(`post/${postId}`)
+
+        if (res.data) {
+          this.post = res.data
+        }
+
+        await this.$store.dispatch('toggleLoading', false)
       } catch (e) {
-        const response = e.response
-        if (response) {
-          if (response.status === 500) this.$showAlert('An error occurred', 'error')
-          if (response.data) {
-            this.$showAlert(response.data.message, 'error')
-            if (response.status === 401) {
-              if (this.$auth.loginWith) {
-                await this.$auth.logout()
-              }
-            }
-          }
-        } else window.console.log(e.message)
+        window.console.log(e)
         await this.$store.dispatch('toggleLoading', false)
       }
     },
 
-    async comment() {
-
-    },
+    async deletedPost() {
+      await this.$router.push('/')
+    }
   }
 }
 </script>
 
 <style lang='scss' scoped>
-
+.twit-page {
+  padding: 3rem 2rem;
+}
 </style>

@@ -30,7 +30,7 @@ export default {
   },
   methods: {
     goToTwit() {
-      window.console.log('twit')
+      this.$router.push(`/twit/${this.post.id}`)
     },
 
     async likePost() {
